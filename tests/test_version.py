@@ -36,3 +36,29 @@ class Test_Version(TestCase):
     self.assertNotEqual(hash(v1), hash(v2))
 
 
+  def test_bump_patch_increments_the_patch(self):
+    self.assertEqual(Version(1, 2, 3).bump_patch(), Version(1, 2, 4))
+  
+  def test_bump_patch_returns_a_new_Version(self):
+    v = Version(1, 2, 3)
+    self.assertNotEqual(id(v), id(v.bump_patch()))
+    self.assertEqual(v, Version(1, 2, 3))
+
+
+  def test_bump_minor_increments_the_minor_and_resets_patch(self):
+    self.assertEqual(Version(1, 2, 3).bump_minor(), Version(1, 3, 0))
+  
+  def test_bump_minor_returns_a_new_Version(self):
+    v = Version(1, 2, 3)
+    self.assertNotEqual(id(v), id(v.bump_minor()))
+    self.assertEqual(v, Version(1, 2, 3))
+  
+
+  def test_bump_major_increments_the_major_and_resets_minor_and_patch(self):
+    self.assertEqual(Version(1, 2, 3).bump_major(), Version(2, 0, 0))
+
+  def test_bump_major_returns_a_new_Version(self):
+    v = Version(1, 2, 3)
+    self.assertNotEqual(id(v), id(v.bump_major()))
+    self.assertEqual(v, Version(1, 2, 3))
+
