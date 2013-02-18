@@ -15,29 +15,37 @@ class Version(object):
   an interested to do so.
   """
   def __init__(self, major = 0, minor = 0, patch = 0):
-    self.major = major
-    self.minor = minor
-    self.patch = patch
+    self.__major = major
+    self.__minor = minor
+    self.__patch = patch
+  
+  @property
+  def major(self):
+    return self.__major
+
+  @property
+  def minor(self):
+    return self.__minor
+
+  @property
+  def patch(self):
+    return self.__patch
+
 
   def bump_major(self):
-    self.major += 1
-    self.minor = 0
-    self.patch = 0
-    return self
+    return Version(self.major + 1, 0, 0)
 
   def bump_minor(self):
-    self.minor += 1
-    self.patch = 0
-    return self
+    return Version(self.major, self.minor + 1, 0)
 
   def bump_patch(self):
-    self.patch += 1
-    return self
-  
+    return Version(self.major, self.minor, self.patch + 1)
+
+
   @property
   def tuple(self):
     return (self.major, self.minor, self.patch)
-  
+
   def __eq__(self, rhs):
     return isinstance(rhs, Version) and self.tuple == rhs.tuple
 
