@@ -1,9 +1,12 @@
 
-from paver.tasks import task
+import os
+from paver.tasks import task, environment
+
+VERSION_FILE = os.path.abspath(os.path.join(environment.pavement_file, "..", ".version"))
 
 @task
 def bump_patch():
-  pass
+  print VERSION_FILE
 
 
 @task
