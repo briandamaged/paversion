@@ -62,3 +62,4 @@ class Test_Version(TestCase):
     self.assertNotEqual(id(v), id(v.bump_major()))
     self.assertEqual(v, Version(1, 2, 3))
 
+
