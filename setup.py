@@ -1,8 +1,12 @@
 from setuptools import setup, find_packages
 
+with open(".version") as fin:
+  version = fin.read()
+
+
 setup(
     name = 'paversion',
-    version = '0.0.1',
+    version = version,
     description = 'Paver tasks for bumping setup.py version metadata',
     author = 'Brian Lauber',
     author_email = 'constructible.truth@gmail.com',
